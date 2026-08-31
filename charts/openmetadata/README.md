@@ -401,6 +401,7 @@ By default `backendTrafficPolicy` targets this chart's own `HTTPRoute` and `clie
 | readinessProbe.httpGet.path | string | `/` |
 | readinessProbe.httpGet.port | string | `http` |
 | replicaCount | int | `1` |
+| deploymentStrategy | object | `{}` |
 | resources | object | `{}` |
 | startingDeadlineSeconds | int | `100` |
 | testConnection.resources | object | `{}` |

@@ -1938,6 +1938,34 @@
     "replicaCount": {
       "type": "integer"
     },
+    "deploymentStrategy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["Recreate", "RollingUpdate"]
+        },
+        "rollingUpdate": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "maxSurge": {
+              "anyOf": [
+                { "type": "integer" },
+                { "type": "string" }
+              ]
+            },
+            "maxUnavailable": {
+              "anyOf": [
+                { "type": "integer" },
+                { "type": "string" }
+              ]
+            }
+          }
+        }
+      }
+    },
     "automountServiceAccountToken": {
       "type": "boolean"
     },
