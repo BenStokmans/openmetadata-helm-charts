@@ -26,8 +26,8 @@ appVersion: "2.0.0"
 home: https://open-metadata.org/
 
 sources:
-  - https://github.com/open-metadata/OpenMetadata
-  - https://github.com/open-metadata/openmetadata-helm-charts
+  - https://github.com/BenStokmans/OpenMetadata
+  - https://github.com/BenStokmans/openmetadata-helm-charts
 
 keywords:
   - metadata
@@ -59,7 +59,7 @@ icon: https://open-metadata.org/assets/favicon.png
 annotations:
   artifacthub.io/images: |
     - name: openmetadata-server
-      image: docker.io/openmetadata/server:2.0.0
+      image: ghcr.io/benstokmans/openmetadata-server:2.0.0
   artifacthub.io/license: "Apache-2.0"
   # artifacthub.io/prerelease: "false"
   artifacthub.io/recommendations: |
@@ -67,5 +67,5 @@ annotations:
     - name: apache/airflow
     - name: opensearchproject/opensearch
   # artifacthub.io/containsSecurityUpdates: "true"
-  artifacthub.io/support: "https://github.com/open-metadata/openmetadata-helm-charts/issues"
+  artifacthub.io/support: "https://github.com/BenStokmans/openmetadata-helm-charts"
   kubeVersion: ">=1.24"

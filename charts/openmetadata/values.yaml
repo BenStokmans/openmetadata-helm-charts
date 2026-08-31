@@ -116,7 +116,7 @@ openmetadata:
         namespace: ""
         className: "org.openmetadata.service.clients.pipeline.k8s.K8sPipelineClient"
         # Container image for ingestion jobs
-        ingestionImage: "docker.getcollate.io/openmetadata/ingestion-base:latest"
+        ingestionImage: "ghcr.io/benstokmans/openmetadata-ingestion:2.0.0"
         # Image pull policy
         imagePullPolicy: "IfNotPresent"
         # Image pull secrets (comma-separated)
@@ -460,7 +460,7 @@ networkPolicy:
   #   callbackUrl: "<callback_url>"
 
 image:
-  repository: docker.getcollate.io/openmetadata/server
+  repository: ghcr.io/benstokmans/openmetadata-server
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
   pullPolicy: "Always"

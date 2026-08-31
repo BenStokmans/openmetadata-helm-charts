@@ -325,7 +325,7 @@ By default `backendTrafficPolicy` targets this chart's own `HTTPRoute` and `clie
 | extraVolumeMounts | Templatable string of additional `volumeMounts` to be passed to the `tpl` function | `[]` |
 | fullnameOverride | string | `"openmetadata"` |
 | image.pullPolicy | string | `"Always"` |
-| image.repository | string | `"docker.getcollate.io/openmetadata/server"` |
+| image.repository | string | `"ghcr.io/benstokmans/openmetadata-server"` |
 | image.tag | string | `2.0.0` |
 | imagePullSecrets | list | `[]` |
 | gateway.annotations | object | `{}` |
@@ -523,7 +523,7 @@ openmetadata:
       k8s:
         className: "org.openmetadata.service.clients.pipeline.k8s.K8sPipelineClient"
         namespace: "openmetadata-pipelines"
-        ingestionImage: "docker.getcollate.io/openmetadata/ingestion:latest"
+        ingestionImage: "ghcr.io/benstokmans/openmetadata-ingestion:2.0.0"
         enableFailureDiagnostics: true
         # ... see K8s configuration section below
 ```
@@ -579,7 +579,7 @@ openmetadata:
         # Core configuration
         className: "org.openmetadata.service.clients.pipeline.k8s.K8sPipelineClient"
         namespace: "openmetadata-pipelines"
-        ingestionImage: "docker.getcollate.io/openmetadata/ingestion:latest"
+        ingestionImage: "ghcr.io/benstokmans/openmetadata-ingestion:2.0.0"
         
         # Resource management
         resources:
@@ -616,7 +616,7 @@ openmetadata:
 | Parameter | Default | Description |
 |-----------|---------|-------------|
 | `k8s.namespace` | `openmetadata-pipelines` | Kubernetes namespace for pipeline jobs |
-| `k8s.ingestionImage` | `docker.getcollate.io/openmetadata/ingestion:latest` | Container image for ingestion jobs |
+| `k8s.ingestionImage` | `ghcr.io/benstokmans/openmetadata-ingestion:2.0.0` | Container image for ingestion jobs |
 | `k8s.imagePullPolicy` | `IfNotPresent` | Image pull policy |
 | `k8s.imagePullSecrets` | `""` | Image pull secrets (comma-separated) |
 | `k8s.serviceAccountName` | `openmetadata-ingestion` | Service account for ingestion jobs |

@@ -1,37 +1,48 @@
-name: Release Open Metadata Charts
+name: Publish OpenMetadata charts to GHCR
 
 on:
   workflow_dispatch:
 
+permissions:
+  contents: read
+  packages: write
+
 jobs:
-  release:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v5
-        with:
-          fetch-depth: 0
-
-      - name: Configure Git
-        run: |
-          git config user.name "$GITHUB_ACTOR"
-          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
       - name: Install Helm
         uses: azure/setup-helm@v4
         with:
-          token: "${{ secrets.GITHUB_TOKEN }}"
-      
-      - name: Add Helm repos
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Add dependency repositories
         run: |
           helm repo add opensearch https://opensearch-project.github.io/helm-charts/
           helm repo add mysql https://charts.bitnami.com/bitnami
           helm repo add airflow https://airflow.apache.org
 
-      - name: Run chart-releaser
-        uses: helm/chart-releaser-action@v1.7.0
-        with:
-          charts_repo_url: https://helm.open-metadata.org
-        env:
-          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          HELM_EXPERIMENTAL_OCI: "1"
+      - name: Build chart dependencies
+        run: helm dependency build charts/deps
+
+      - name: Lint charts
+        run: |
+          helm lint charts/openmetadata
+          helm lint charts/deps
+
+      - name: Login to GHCR
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | helm registry login ghcr.io --username "${{ github.actor }}" --password-stdin
+
+      - name: Package charts
+        run: |
+          mkdir -p dist/openmetadata dist/dependencies
+          helm package charts/openmetadata --destination dist/openmetadata
+          helm package charts/deps --destination dist/dependencies
+
+      - name: Publish charts
+        run: |
+          helm push dist/openmetadata/*.tgz oci://ghcr.io/benstokmans
+          helm push dist/dependencies/*.tgz oci://ghcr.io/benstokmans

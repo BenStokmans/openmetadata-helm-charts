@@ -114,7 +114,7 @@ The operator respects all existing `pipelineServiceClient` configurations:
 ```yaml
 pipelineServiceClient:
   enabled: true
-  ingestionImage: docker.getcollate.io/openmetadata/ingestion:latest
+  ingestionImage: ghcr.io/benstokmans/openmetadata-ingestion:2.0.0
   serviceAccountName: openmetadata-ingestion
   ttlSecondsAfterFinished: 86400  # 24 hours
   resources:
