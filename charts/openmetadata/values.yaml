@@ -126,7 +126,7 @@ openmetadata:
         namespace: ""
         className: "org.openmetadata.service.clients.pipeline.k8s.K8sPipelineClient"
         # Container image for ingestion jobs
-        ingestionImage: "ghcr.io/benstokmans/openmetadata-ingestion:2.0.1"
+        ingestionImage: "ghcr.io/benstokmans/openmetadata-ingestion:2.0.2"
         # Image pull policy
         imagePullPolicy: "IfNotPresent"
         # Image pull secrets (comma-separated)
